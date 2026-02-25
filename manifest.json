@@ -1,7 +1,7 @@
 {
   "short_name": "OSI Layers",
   "name": "OSI Network Layers Visualization",
-  "description": "Interactive visualization of the OSI 7-layer network model",
+  "description": "Interactive visualization of the OSI 7-layer network model - Best viewed in landscape mode",
   "icons": [
     {
       "src": "favicon.ico",
@@ -25,20 +25,41 @@
   "display": "standalone",
   "theme_color": "#10b981",
   "background_color": "#0f172a",
-  "orientation": "portrait-primary",
+  "orientation": "landscape-primary",
   "categories": ["education", "networking", "technology"],
+  "prefer_related_applications": false,
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "display_override": ["window-controls-overlay", "minimal-ui"],
+  "shortcuts": [
+    {
+      "name": "View Network",
+      "short_name": "Network",
+      "description": "View the main network visualization",
+      "url": "/",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
   "screenshots": [
     {
       "src": "screenshot-mobile.png",
       "sizes": "390x844",
       "type": "image/png",
-      "form_factor": "narrow"
+      "form_factor": "narrow",
+      "label": "Mobile view of OSI layers"
     },
     {
       "src": "screenshot-desktop.png", 
       "sizes": "1920x1080",
       "type": "image/png",
-      "form_factor": "wide"
+      "form_factor": "wide",
+      "label": "Desktop view of OSI network visualization"
     }
   ]
 }
