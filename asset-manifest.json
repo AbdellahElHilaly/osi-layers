@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/osi-layers/static/css/main.241e47d1.css",
-    "main.js": "/osi-layers/static/js/main.9a97bfaa.js",
+    "main.css": "/osi-layers/static/css/main.9cffd7cf.css",
+    "main.js": "/osi-layers/static/js/main.f4ffa2e7.js",
     "index.html": "/osi-layers/index.html",
-    "main.241e47d1.css.map": "/osi-layers/static/css/main.241e47d1.css.map",
-    "main.9a97bfaa.js.map": "/osi-layers/static/js/main.9a97bfaa.js.map"
+    "main.9cffd7cf.css.map": "/osi-layers/static/css/main.9cffd7cf.css.map",
+    "main.f4ffa2e7.js.map": "/osi-layers/static/js/main.f4ffa2e7.js.map"
   },
   "entrypoints": [
-    "static/css/main.241e47d1.css",
-    "static/js/main.9a97bfaa.js"
+    "static/css/main.9cffd7cf.css",
+    "static/js/main.f4ffa2e7.js"
   ]
 }
