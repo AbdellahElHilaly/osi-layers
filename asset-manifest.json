@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/osi-layers/static/css/main.241e47d1.css",
+    "main.js": "/osi-layers/static/js/main.9a97bfaa.js",
+    "index.html": "/osi-layers/index.html",
+    "main.241e47d1.css.map": "/osi-layers/static/css/main.241e47d1.css.map",
+    "main.9a97bfaa.js.map": "/osi-layers/static/js/main.9a97bfaa.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.241e47d1.css",
+    "static/js/main.9a97bfaa.js"
+  ]
+}
