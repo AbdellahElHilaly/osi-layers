@@ -38,38 +38,36 @@
       
       // Add install button to UI
       function addInstallButton() {
+        // Only show on mobile devices
+        if (window.innerWidth > 768) return;
         if (document.getElementById('install-button-ui')) return;
         
         const installBtn = document.createElement('button');
         installBtn.id = 'install-button-ui';
-        installBtn.innerHTML = '📱 Install App';
+        installBtn.innerHTML = '📱';
         installBtn.style.cssText = `
           position: fixed;
-          top: 20px;
-          right: 20px;
+          top: 15px;
+          right: 15px;
           background: #10b981;
           color: white;
           border: none;
-          padding: 0.75rem 1rem;
-          border-radius: 2rem;
-          font-size: 0.9rem;
-          font-weight: 600;
+          padding: 8px;
+          border-radius: 50%;
+          font-size: 16px;
           cursor: pointer;
           z-index: 9999;
-          box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+          box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
           transition: all 0.2s;
+          width: 36px;
+          height: 36px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         `;
         
         installBtn.addEventListener('click', handleInstallClick);
         document.body.appendChild(installBtn);
-        
-        // Hide after 10 seconds if not clicked
-        setTimeout(() => {
-          if (document.getElementById('install-button-ui')) {
-            installBtn.style.opacity = '0.7';
-            installBtn.style.transform = 'scale(0.9)';
-          }
-        }, 10000);
       }
       
       function handleInstallClick() {
@@ -89,87 +87,10 @@
             const btn = document.getElementById('install-button-ui');
             if (btn) btn.remove();
           });
-        } else {
-          console.log('No deferred prompt available, showing manual instructions');
-          showManualInstallInstructions();
         }
       }
       
-      function showManualInstallInstructions() {
-        const instructionsOverlay = document.createElement('div');
-        instructionsOverlay.style.cssText = `
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: rgba(0,0,0,0.9);
-          z-index: 10000;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          backdrop-filter: blur(5px);
-        `;
-        
-        const instructionsCard = document.createElement('div');
-        instructionsCard.style.cssText = `
-          background: white;
-          padding: 2rem;
-          border-radius: 1rem;
-          text-align: center;
-          max-width: 350px;
-          margin: 1rem;
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        `;
-        
-        const userAgent = navigator.userAgent;
-        let instructions = '';
-        
-        if (userAgent.includes('iPhone') || userAgent.includes('iPad')) {
-          instructions = `
-            <h3 style="margin: 0 0 1rem 0; color: #1f2937;">📱 Install on iPhone/iPad</h3>
-            <div style="text-align: left; margin: 1rem 0; line-height: 1.6; color: #6b7280;">
-              <p><strong>1.</strong> Tap the Share button <span style="font-size: 1.2em;">⏏️</span> in Safari</p>
-              <p><strong>2.</strong> Scroll down and tap "Add to Home Screen"</p>
-              <p><strong>3.</strong> Tap "Add" to install the app</p>
-            </div>
-          `;
-        } else if (userAgent.includes('Android')) {
-          instructions = `
-            <h3 style="margin: 0 0 1rem 0; color: #1f2937;">📱 Install on Android</h3>
-            <div style="text-align: left; margin: 1rem 0; line-height: 1.6; color: #6b7280;">
-              <p><strong>1.</strong> Tap the menu (⋮) in your browser</p>
-              <p><strong>2.</strong> Look for "Add to Home Screen" or "Install App"</p>
-              <p><strong>3.</strong> Tap "Install" or "Add"</p>
-            </div>
-          `;
-        } else {
-          instructions = `
-            <h3 style="margin: 0 0 1rem 0; color: #1f2937;">📱 Install App</h3>
-            <div style="text-align: left; margin: 1rem 0; line-height: 1.6; color: #6b7280;">
-              <p>Look for an "Install" or "Add to Home Screen" option in your browser menu.</p>
-              <p>This will add the app to your device for quick access!</p>
-            </div>
-          `;
-        }
-        
-        instructionsCard.innerHTML = instructions + `
-          <button onclick="this.parentElement.parentElement.remove()" style="
-            background: #10b981;
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 1rem;
-            font-size: 1rem;
-          ">Got it!</button>
-        `;
-        
-        instructionsOverlay.appendChild(instructionsCard);
-        document.body.appendChild(instructionsOverlay);
-      }
+
       
       // PWA Install Prompt Detection
       window.addEventListener('beforeinstallprompt', (e) => {
@@ -273,72 +194,13 @@
       window.addEventListener('load', () => {
         // Wait a bit then add install button if mobile and not installed
         setTimeout(() => {
-          if (window.innerWidth <= 768 && !window.matchMedia('(display-mode: standalone)').matches) {
+          if (!window.matchMedia('(display-mode: standalone)').matches) {
             addInstallButton();
           }
-        }, 5000);
-        
-        // Show rotate prompt on mobile if in portrait
-        if (window.innerWidth <= 768 && window.innerHeight > window.innerWidth) {
-          setTimeout(() => showRotatePrompt(), 1000);
-        }
+        }, 3000);
       });
       
-      // Orientation change handling
-      window.addEventListener('orientationchange', () => {
-        setTimeout(() => {
-          if (screen.orientation && (screen.orientation.angle === 0 || screen.orientation.angle === 180)) {
-            showRotatePrompt();
-          }
-        }, 500);
-      });
-      
-      function showRotatePrompt() {
-        if (window.innerWidth > 768) return; // Only on mobile
-        if (document.getElementById('rotate-prompt')) return; // Don't show if already visible
-        
-        const rotatePrompt = document.createElement('div');
-        rotatePrompt.id = 'rotate-prompt';
-        rotatePrompt.style.cssText = `
-          position: fixed;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          background: rgba(0,0,0,0.9);
-          color: white;
-          padding: 1.5rem;
-          border-radius: 1rem;
-          text-align: center;
-          z-index: 9999;
-          max-width: 280px;
-          backdrop-filter: blur(10px);
-          animation: fadeIn 0.3s ease;
-        `;
-        
-        rotatePrompt.innerHTML = `
-          <div style="font-size: 3rem; margin-bottom: 1rem;">🔄</div>
-          <h4 style="margin: 0 0 0.5rem 0;">Better Experience</h4>
-          <p style="margin: 0 0 1rem 0; font-size: 0.9rem; opacity: 0.8;">Rotate your device to landscape mode for the best view of the network layers!</p>
-          <button onclick="this.parentElement.remove()" style="
-            background: #10b981;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            font-size: 0.9rem;
-          ">Got it!</button>
-        `;
-        
-        document.body.appendChild(rotatePrompt);
-        
-        // Auto-hide after 6 seconds
-        setTimeout(() => {
-          if (document.getElementById('rotate-prompt')) {
-            rotatePrompt.remove();
-          }
-        }, 6000);
-      }
+
     </script>
     
     <!-- Add CSS animations -->
