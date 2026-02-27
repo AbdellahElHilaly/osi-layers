@@ -1,0 +1,254 @@
+/* Network Ball Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  33% { transform: translateY(-20px) translateX(10px); }
+  66% { transform: translateY(-10px) translateX(-15px); }
+}
+
+@keyframes float-reverse {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  33% { transform: translateY(15px) translateX(-10px); }
+  66% { transform: translateY(-25px) translateX(20px); }
+}
+
+@keyframes swim {
+  0% { transform: translateX(0px) translateY(0px); }
+  25% { transform: translateX(150px) translateY(-80px); }
+  50% { transform: translateX(300px) translateY(-40px); }
+  75% { transform: translateX(150px) translateY(80px); }
+  100% { transform: translateX(0px) translateY(0px); }
+}
+
+@keyframes swim-reverse {
+  0% { transform: translateX(0px) translateY(0px); }
+  25% { transform: translateX(-150px) translateY(100px); }
+  50% { transform: translateX(-300px) translateY(30px); }
+  75% { transform: translateX(-150px) translateY(-100px); }
+  100% { transform: translateX(0px) translateY(0px); }
+}
+
+@keyframes swim-third {
+  0% { transform: translateX(0px) translateY(0px); }
+  25% { transform: translateX(100px) translateY(-150px); }
+  50% { transform: translateX(-100px) translateY(-200px); }
+  75% { transform: translateX(-200px) translateY(-50px); }
+  100% { transform: translateX(0px) translateY(0px); }
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+  100% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6), 0 0 60px rgba(59, 130, 246, 0.3); }
+}
+
+@keyframes icon-float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+/* Explosion Animation */
+@keyframes explosion {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.7; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+/* Universe Swimming Animations */
+@keyframes universe-swim {
+  0% { transform: translateX(0px) translateY(0px); }
+  25% { transform: translateX(80px) translateY(-40px); }
+  50% { transform: translateX(120px) translateY(60px); }
+  75% { transform: translateX(40px) translateY(80px); }
+  100% { transform: translateX(0px) translateY(0px); }
+}
+
+@keyframes universe-swim-alt {
+  0% { transform: translateX(0px) translateY(0px); }
+  25% { transform: translateX(-60px) translateY(50px); }
+  50% { transform: translateX(-100px) translateY(-30px); }
+  75% { transform: translateX(-40px) translateY(-70px); }
+  100% { transform: translateX(0px) translateY(0px); }
+}
+
+/* Animation Classes */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 8s ease-in-out infinite;
+}
+
+.animate-swim {
+  animation: swim 10s linear infinite;
+}
+
+.animate-swim-reverse {
+  animation: swim-reverse 12s linear infinite;
+}
+
+.animate-swim-third {
+  animation: swim-third 14s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite alternate;
+}
+
+.animate-icon-float {
+  animation: icon-float 4s ease-in-out infinite;
+}
+
+.animate-explosion {
+  animation: explosion 0.8s ease-out forwards;
+}
+
+.animate-universe-swim {
+  animation: universe-swim 8s linear infinite;
+}
+
+.animate-universe-swim-alt {
+  animation: universe-swim-alt 10s linear infinite;
+}
+
+/* Network Ball Base Styles */
+.network-ball {
+  transition: all 0.3s ease;
+}
+
+.network-ball:hover {
+  transform: scale(1.05);
+}
+
+.fade-out {
+  animation: fadeOut 0.8s ease-out forwards;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes frame-flow {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(100vw + 100px));
+    opacity: 0;
+  }
+}
+
+.animate-frame-flow {
+  animation: frame-flow 8s infinite linear;
+}
+
+@keyframes packet-flow {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(100vw + 100px));
+    opacity: 0;
+  }
+}
+
+.animate-packet-flow {
+  animation: packet-flow 10s infinite linear;
+}
+
+@keyframes segment-flow {
+  0% {
+    transform: translateX(-120px);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(100vw + 120px));
+    opacity: 0;
+  }
+}
+
+.animate-segment-flow {
+  animation: segment-flow 12s infinite linear;
+}
+
+@keyframes crypto-flow {
+  0% {
+    transform: translateX(-150px) scale(0.8);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    transform: translateX(calc(100vw + 150px)) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.animate-crypto-flow {
+  animation: crypto-flow 14s infinite linear;
+}
+
+@keyframes bit-flow {
+  0% {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(100vw + 50px));
+    opacity: 0;
+  }
+}
+
+.animate-bit-flow {
+  animation: bit-flow 8s infinite linear;
+}
+
+@keyframes pulse-fast {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+.animate-pulse-fast {
+  animation: pulse-fast 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}

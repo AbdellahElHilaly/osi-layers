@@ -1,0 +1,159 @@
+/* Mobile optimizations */
+@media only screen and (max-width: 768px) {
+
+  /* Make balls smaller on mobile and improve touch */
+  .network-ball {
+    transform: scale(0.7) !important;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+
+  /* Even smaller balls and reset position for very small screens */
+  .network-ball {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    margin: 1rem auto !important;
+    display: inline-block !important;
+    transform: scale(0.65) !important;
+  }
+
+  .network-ball>div {
+    transform: scale(0.65);
+    transform-origin: center center;
+  }
+}
+
+/* Landscape orientation optimizations for mobile */
+@media screen and (orientation: landscape) and (max-width: 896px) {
+
+  /* Perfect scaling for landscape mobile */
+  .network-ball {
+    transform: scale(0.8) !important;
+  }
+
+  /* Optimize spacing for landscape */
+  body {
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+
+  /* Adjust universe view for landscape */
+  .universe-container {
+    padding: 0.5rem !important;
+    min-height: 100vh;
+  }
+
+  /* Better text sizing in landscape */
+  .network-ball h3 {
+    font-size: 1.4rem !important;
+  }
+
+  .network-ball p {
+    font-size: 0.8rem !important;
+  }
+}
+
+/* Portrait orientation warning/guidance */
+@media screen and (orientation: portrait) and (max-width: 768px) {
+
+  /* Add subtle indication that landscape is better */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #10b981, #34d399);
+    z-index: 1000;
+    animation: pulse 2s infinite;
+  }
+}
+
+/* Touch optimization */
+@media (hover: none) and (pointer: coarse) {
+  .network-ball:hover {
+    transform: scale(1.05);
+  }
+
+  .network-ball:active {
+    transform: scale(0.95);
+    transition: transform 0.1s;
+  }
+
+  /* Better touch feedback */
+  .network-ball {
+    transition: transform 0.2s ease;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media screen and (orientation: landscape) and (max-height: 600px) {
+  .network-ball {
+    transform: scale(0.6) !important;
+  }
+}
+
+/* PWA full-screen support */
+@media all and (display-mode: standalone) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Hide browser UI hints when in standalone mode */
+  .pwa-install-hint {
+    display: none !important;
+  }
+}
+
+/* Install prompt animations */
+@keyframes slideInUp {
+  from {
+    transform: translate(-50%, 100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Rotate device prompt styling */
+@media screen and (orientation: portrait) and (max-width: 768px) {
+  .rotate-device-hint {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(16, 185, 129, 0.9);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    animation: pulse 2s infinite;
+  }
+}
